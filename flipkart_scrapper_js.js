@@ -1,5 +1,6 @@
 var JSSoup = require('jssoup').default;
 const http = require('http');
+// const axios = require('axios');
 
 scrapper = async () => {
 
@@ -8,9 +9,17 @@ scrapper = async () => {
 
     let HEADERS = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36', 'Accept-Language': 'en-US, en;q=0.5'}
 
-    const response = await fetch(url, {method : 'get', headers : HEADERS});
+    const response = await fetch(url, {method : 'GET', headers : HEADERS});
     const text = await response.text();
-    // console.log(text);
+    console.log(text);
+
+    // const res  = await axios.get(url, {
+    //     headers : HEADERS
+    // });
+    
+    console.log(res);
+
+    // const text = "tedbsfr";
 
     var soup = new JSSoup(text);
     amazon_img = soup.find('div', attrs = {'id' : 'imageBlock'}).find('span', attrs = {'class' : 'a-button-text'}).find('img').attrs['src']
@@ -105,17 +114,25 @@ scrapper = async () => {
             flip_link = prod_box.attrs['href']
             
             rating = prod_box.find('div', attrs = {'class' : '_3LWZlK'}).nextElement._text
-            console.log(rating)
+            document.getElementById("rating").innerHTML= rating;
+            // console.log(rating)
 
             total_ratings = prod_box.find('span', attrs = {'class' : '_2_R_DZ'}).nextElement.nextElement.nextElement._text
-            console.log(total_ratings)
+            document.getElementById("total_ratings").innerHTML=total_ratings;
+             // console.log(total_ratings)
+
             reviews = prod_box.find('span', attrs = {'class' : '_13vcmD'}).nextElement.nextElement.nextElement._text
-            console.log(reviews)
+            document.getElementById("reviews").innerHTML=reviews;
+
+
             Availability = (prod_box.findAll('div', attrs = {'class' : '_3G6awp'})).length > 0
-            console.log(Availability)
+            document.getElementById("Availability").innerHTML=Availability;
+            // console.log(Availability)
 
             price = prod_box.find('div', attrs = {'class' : '_30jeq3'}).nextElement._text
-            console.log(price)
+            document.getElementById("price").innerHTML=price;
+            // console.log(price)
+
             break
         }
     }

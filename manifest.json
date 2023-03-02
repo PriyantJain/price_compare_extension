@@ -1,0 +1,12 @@
+{
+    "name": "Price_Compare",
+    "version": "1.0.0",
+    "description": "Compare price of a product at two different platform",
+    "manifest_version": 3,
+    "action":{
+        "default_popup": "index.html",
+        "default_title": "Price_Compare",
+        "default_icon" : "images/Screenshot 2022-03-09 110953.png"
+
+    }
+}
